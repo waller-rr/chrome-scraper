@@ -3,7 +3,8 @@ import json
 import ramda as R
 import requests
 from typing import Callable, List, Any, Optional
-from utils.common import formatter_screenshots, formatter_users, formatter_date, formatter_free, formatter_related, formatter_manifest
+from utils.common import formatter_screenshots, formatter_users, formatter_date, formatter_free, formatter_related, \
+    formatter_manifest
 
 
 class MappingsSpec:
@@ -70,11 +71,10 @@ class Mappings:
         "google_analytics_id": MappingsSpec([0, 1, 1, 0, 48]),
 
         "related": MappingsSpec([0, 1, 2], formatter_related),
-
     }
 
 
-def chrome(chrome_id, lang="en", country="us"):
+def chrome(chrome_id, lang="en", country="us", related=False):
     chrome_data = get_chrome(chrome_id, lang, country)
     return get_chrome_detail(chrome_data)
 
@@ -136,4 +136,3 @@ def get_chrome(chrome_id, lang, country):
                              headers=headers, data=data)
     response_json = response.text[4:].strip()
     return json.loads(response_json)
-

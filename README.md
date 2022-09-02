@@ -201,7 +201,7 @@ What are ASOTools alternatives:
 }
 ```
 
-Example with `releated` option:
+Example with `related` option:
 
 ```python
 from chrome_scraper import chrome
@@ -210,8 +210,53 @@ result = chrome(
     'doffdbedgdhbmffejikhlojkopaleian',
     lang='en', # defaults to 'en'
     country='us', # defaults to 'us',
-    releated=true
+    related=True
 )
+```
+Result of `print(result)`:
+
+```
+{
+    "chrome_id": "doffdbedgdhbmffejikhlojkopaleian", 
+    "name": "Best ASO Tools for Google Play Store", 
+    
+    ...
+    
+    "related": [
+        {
+          "id": "ofjlibelpafmdhigfgggickpejfomamk",
+          "name": "Discordmate - Discord Chat Exporter",
+          "icon": "https://lh3.googleusercontent.com/ORJL8gNWcFAK6EoTXZuIzIj0FX5_Vwe9WEYNg6o3Hz20ho5JpgWeHBfpEcP0kjD9ItJnYlGmvyo_YseeoE951Hj-gA=w50-h50-e365-rj-sc0x00ffffff",
+          "url": "https://chrome.google.com/webstore/detail/discordmate-discord-chat/ofjlibelpafmdhigfgggickpejfomamk?hl=en&gl=US",
+          "summary": "The extension that can provide Discord chat log export, batch export of video, images and such attachments in Discord chat history.",
+          "category": "ext/7-productivity",
+          "category_name": "Productivity",
+          "score": 4.884615384615385,
+          "ratings": 78,
+          "users": "1,000+",
+          "developer_name": "abel.sonmerfield",
+          "developer_website": null,
+          "featured": 0
+        },
+        {
+          "id": "pcbmgmpmajnemcackfikoibnebfmlbab",
+          "name": "LinkedRadar Notifier For LinkedIn™",
+          "icon": "https://lh3.googleusercontent.com/NEVISWNNakKSdHGOMFgGVh29eSAT_lL4ILDK1rdxfHgyP6Ck_RwYtg7qdZkefe2bzuGDpRG1W71ZX-RxYbSs3FjfQA=w50-h50-e365-rj-sc0x00ffffff",
+          "url": "https://chrome.google.com/webstore/detail/linkedradar-notifier-for/pcbmgmpmajnemcackfikoibnebfmlbab?hl=en&gl=US",
+          "summary": "Convenient to get the real-time activity from linkedin.com, including Network, Messages and Notifications.",
+          "category": "ext/1-communication",
+          "category_name": "Social & Communication",
+          "score": 4.983333333333333,
+          "ratings": 60,
+          "users": "169",
+          "developer_name": "LinkedRadar",
+          "developer_website": "https://linkedradar.com",
+          "featured": 0
+        },
+        ...
+    ]
+
+}
 ```
 
 ### Chrome Reviews
