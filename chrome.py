@@ -3,14 +3,10 @@ import json
 import ramda as R
 import requests
 from typing import Callable, List, Any, Optional
-from utils.common import formatter_screenshots, formatter_users, formatter_date, formatter_free, formatter_related
+from utils.common import formatter_screenshots, formatter_users, formatter_date, formatter_free, formatter_related, formatter_manifest
 
 
 class MappingsSpec:
-    """
-    map
-    """
-
     def __init__(
             self,
             mapping: List[int],
@@ -21,13 +17,13 @@ class MappingsSpec:
         self.function = function
         self.default_value = default_value
 
-    def extract_content(self, source_data: dict):
+    def extract_content(self, source_data):
         try:
             result = R.path(self.map, source_data)
             if self.function is not None:
                 result = self.function(result)
         except:
-            result = ''
+            result = self.default_value
         return result
 
 
@@ -50,7 +46,7 @@ class Mappings:
         "languages": MappingsSpec([0, 1, 1, 8]),
         "free": MappingsSpec([0, 1, 1, 9, 3], formatter_free),
         "free_text": MappingsSpec([0, 1, 1, 9, 3]),
-        "manifest": MappingsSpec([0, 1, 1, 9, 0]),
+        "manifest": MappingsSpec([0, 1, 1, 9, 0], formatter_manifest),
         "chrome_type": MappingsSpec([0, 1, 1, 10]),
         "featured": MappingsSpec([0, 1, 1, 0, 89]),
         "url": MappingsSpec([0, 1, 1, 0, 37]),
@@ -78,24 +74,20 @@ class Mappings:
     }
 
 
-def chrome():
-    response = get_chrome()
+def chrome(chrome_id, lang="en", country="us"):
+    chrome_data = get_chrome(chrome_id, lang, country)
+    return get_chrome_detail(chrome_data)
+
+
+def get_chrome_detail(chrome_data):
     result = {}
     detail_mappings = Mappings.Detail.items()
     for key, item in detail_mappings:
-        result[key] = item.extract_content(response)
+        result[key] = item.extract_content(chrome_data)
     return result
 
 
-def start():
-    result = chrome()
-    if result:
-        print(json.dumps(result, indent=2, ensure_ascii=False))
-    else:
-        print('data not obtained...')
-
-
-def get_chrome():
+def get_chrome(chrome_id, lang, country):
     cookies = {
         '1P_JAR': '2022-08-11-08',
         'AEC': 'AakniGNLgwwXBPHv6TUXNq3OvDzF2aFg6gbGaLqM02RJecMhQCpEjQ2laA',
@@ -128,13 +120,11 @@ def get_chrome():
     }
 
     params = {
-        # 'hl': 'zh-CN',
-        'hl': 'en',
-        # 'gl': 'CN',
-        'gl': 'US',
+        'hl': lang,
+        'gl': country,
         'pv': '20210820',
         'mce': 'atf,pii,rtr,rlb,gtc,hcn,svp,wtd,hap,nma,dpb,utb,hbh,ebo,hqb,ifm,ndd,ntd,oiu,hns,ctm,ac,hot,hfi,dtp,mac,bga,bps,fcf,rai,rma',
-        'id': 'pfinjbgedbminlmlocobhemokhjobhbi',
+        'id': chrome_id,
         'container': 'CHROME',
         '_reqid': '159087',
         'rt': 'j',
@@ -147,10 +137,3 @@ def get_chrome():
     response_json = response.text[4:].strip()
     return json.loads(response_json)
 
-
-if __name__ == '__main__':
-    # a = "{\n\"update_url\": \"https://clients2.google.com/service/update2/crx\",\n\n    \"name\": \"RetailMeNot Deal Finder™️\",\n    \"version\": \"3.0.804\",\n    \"applications\": {\n        \"gecko\": {\n            \"id\": \"retailmenot-genie@rmn.com\",\n            \"strict_min_version\": \"53.0\"\n        }\n    },\n    \"manifest_version\": 2,\n    \"description\": \"Automatically finds the best promo codes and cash back as you shop online.\",\n    \"homepage_url\": \"https://retailmenot.com/dealfinder\",\n    \"icons\": {\n        \"16\": \"icons/active-icon-16.png\",\n        \"48\": \"icons/active-icon-48.png\",\n        \"128\": \"icons/active-icon-128.png\"\n    },\n    \"background\": {\n        \"scripts\": [\n            \"built/background.bundle.js\",\n            \"built/vendors.bundle.js\"\n        ],\n        \"persistent\": true\n    },\n    \"content_security_policy\": \"script-src 'self'; object-src 'self'\",\n    \"browser_action\": {\n        \"default_icon\": \"icons/active-icon-38.png\",\n        \"default_title\": \"RetailMeNot Deal Finder™️\"\n    },\n    \"permissions\": [\n        \"storage\",\n        \"tabs\",\n        \"cookies\",\n        \"*://*.retailmenot.com/\",\n        \"webRequest\",\n        \"<all_urls>\"\n    ],\n    \"content_scripts\": [\n        {\n            \"matches\": [\n                \"http://*/*\",\n                \"https://*/*\"\n            ],\n            \"js\": [\n                \"built/inject.bundle.js\",\n                \"built/drivers__1-off-drivers.bundle.js\",\n                \"built/drivers__adobe.bundle.js\",\n                \"built/drivers__atgCommerce.bundle.js\",\n                \"built/drivers__basketdo.bundle.js\",\n                \"built/drivers__bonton.bundle.js\",\n                \"built/drivers__champion.bundle.js\",\n                \"built/drivers__chicos.bundle.js\",\n                \"built/drivers__demandware.bundle.js\",\n                \"built/drivers__demandwareAJAX.bundle.js\",\n                \"built/drivers__dmcaBadge.bundle.js\",\n                \"built/drivers__famousfootwear.bundle.js\",\n                \"built/drivers__footlocker.bundle.js\",\n                \"built/drivers__gap.bundle.js\",\n                \"built/drivers__hp.bundle.js\",\n                \"built/drivers__lanebryant.bundle.js\",\n                \"built/drivers__m-flow.bundle.js\",\n                \"built/drivers__magento.bundle.js\",\n                \"built/drivers__opencart.bundle.js\",\n                \"built/drivers__oracleCommerce.bundle.js\",\n                \"built/drivers__progifts.bundle.js\",\n                \"built/drivers__saks.bundle.js\",\n                \"built/drivers__sears.bundle.js\",\n                \"built/drivers__shopify.bundle.js\",\n                \"built/drivers__toms.bundle.js\",\n                \"built/drivers__websphere.bundle.js\",\n                \"built/vendors.bundle.js\"\n            ],\n            \"run_at\": \"document_end\"\n        }\n    ],\n    \"web_accessible_resources\": [\n        \"built/inject.css\",\n        \"built/loading-ring.png\",\n        \"built/deal-finder-both-gray.svg\",\n        \"built/deal-finder-cash-back-gray.svg\",\n        \"built/deal-finder-codes-gray.svg\",\n        \"built/deal-finder-lightening-icon.svg\",\n        \"built/deal-finder-savings-gray.svg\",\n        \"built/rmn-logo.svg\",\n        \"built/rmn-logo-white.svg\",\n        \"built/error-warning.svg\",\n        \"icons/rmn-icon.svg\",\n        \"icons/rmn-icon.svg\",\n        \"built/editors_choice_horizontal_1.svg\",\n        \"built/Oval_Copy_red.png\",\n        \"built/Oval_Copy_white.png\",\n        \"built/tick_green.png\",\n        \"built/bar_black.png\",\n        \"built/review_semi_circle.png\"\n    ],\n    \"minimum_chrome_version\": \"49.0.0\"\n}"
-    # b = json.loads(a)
-    # print(json.dumps(b))
-
-    start()

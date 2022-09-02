@@ -1,4 +1,8 @@
 import datetime
+import ramda
+import json
+
+from typing import Callable, List, Any, Optional, AnyStr
 
 
 def formatter_screenshots(data):
@@ -44,8 +48,12 @@ def formatter_related(data):
                 "ratings": item[22],
                 "users": item[23],
                 "developer_name": item[2],
-                "developer_website":  item[81],
-                "featured":  item[89],
+                "developer_website": item[81],
+                "featured": item[89],
             }
             result.append(value)
     return result
+
+
+def formatter_manifest(data):
+    return json.loads(data)
