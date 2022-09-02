@@ -2,11 +2,6 @@
 
 Chrome-Scraper provides APIs to easily crawl the Chrome Extension or Theme for Python *without any external dependencies!*
 
-## Related Projects
-### [chrome-scraper](https://github.com/waller-rr/chrome-scraper)
-
-I have referred a lot to the API design of this library.
-
 ## Installation
 ```
 pip install chrome-scraper
@@ -206,7 +201,20 @@ What are ASOTools alternatives:
 }
 ```
 
-### App Reviews
+Example with `releated` option:
+
+```python
+from chrome_scraper import chrome
+
+result = chrome(
+    'doffdbedgdhbmffejikhlojkopaleian',
+    lang='en', # defaults to 'en'
+    country='us', # defaults to 'us',
+    releated=true
+)
+```
+
+### Chrome Reviews
 `reviews` function returns `result` with `continuation token`.
 
 - `result` : Crawling result of reviews. (list)
@@ -215,7 +223,7 @@ What are ASOTools alternatives:
 > :bulb: Setting `count` too high can cause problems. Because the maximum number of reviews per page supported by Google Play is 200, it is designed to pagination and recrawl by 200 until the number of results reaches count.
 
 ```python
-from google_play_scraper import Sort, reviews
+from chrome_scraper import Sort, reviews
 
 result, continuation_token = reviews(
     'com.fantome.penguinisle',
@@ -239,42 +247,34 @@ Result of `print(result)`:
 
 ```
 [
-    {
-        "userName": "Alyssa Williams",
-        "userImage": "https://lh3.googleusercontent.com/-cVEHKr7mzv8/AAAAAAAAAAI/AAAAAAAAAAA/AKF05nB2r3GUkji31m0tC4ylFNiVMpmNWA/photo.jpg",
-        "content": "This is literally the best idle game I have ever played. The penguins waddle around and live their best lives in the cutest little outfits. I just unlocked the little penguins and I have been sobbing uncontrollably for ten minutes because they are so adorable. There are only two suggestions I have for this game: more of the penguin info ads. I love them. I have learned so much about all the teeny fellas. Secondly, I would like to be able to name my 'guins so I can tell them apart.",
-        "score": 5,
-        "thumbsUpCount": 54,
-        "reviewCreatedVersion": "1.16",
-        "at": datetime.datetime(2020, 2, 24, 17, 19, 34),
-        "replyContent": "Hello, We will gradually improve the various systems in the game to enhance the player's game experience. We have recorded your suggestions and feedback to the planner. If you have any other suggestions and ideas, please feel free to contact us at penguinisle@habby.com.Thank you for playing!",
-        "repliedAt": datetime.datetime(2020, 2, 24, 18, 30, 42),
-        "reviewId": "gp:AOqpTOE0Iy5S9Je1F8W1BgCl6l_TCFP_QN4qGtRATX3PeB5VV9aZu6UHfMWdYFF1at4qZ59xxLNHFqYLql5SL-k"
-    },
-    {
-        "userName": "EasyJet 123",
-        "userImage": "https://lh3.googleusercontent.com/a-/AOh14GhE3-Fsq5KDs_kmCRGcifbNUQTOtK5DpZkJ2AiqyQ",
-        "content": "Easily my favorite game. Relaxing, with easy controls, no purchase necessary to advance... I love it. 100% recommend. I love how you can get gems continually by completing missions, and the low price of boosts are great. But how about adding new buildings like an airport, an army base, and a train station? Would be great to see these. And the building purchase price might be lowered so it's a bit easier to progress after the Igloo. Maybe...",
-        "score": 5,
-        "thumbsUpCount": 79,
-        "reviewCreatedVersion": "1.14",
-        "at": datetime.datetime(2020, 2, 12, 8, 42, 41),
-        "replyContent": None,
-        "repliedAt": None,
-        "reviewId": "gp:AOqpTOHyQo9QEPtxefmvjNuqR9VmFyBaj2FNXLvHsuH19de9bC0dT_voHWSKNGFcc10jv077wOdzBrkgLKX6pUc"
-    },
-    {
-        "userName": "Lillemann",
-        "userImage": "https://lh3.googleusercontent.com/a-/AOh14GjiVSIrx033k9HZ9Tu4BQ1iYZST0IRW8UlDCX3gdw",
-        "content": "Really good looking. And it runs super super smooth. I love the camera options when clicking the camera button. And the penguins looks absolutely awesome and I really love the limited eddition ones. That sometimes the ads are replaced with penguin facts is just awesome. I suggest that you set up some kind of leaderboard it could probobly show the players that are earning the most money per sec or something. But overall this game is a strong 10/10",
-        "score": 5,
-        "thumbsUpCount": 2,
-        "reviewCreatedVersion": "1.14",
-        "at": datetime.datetime(2020, 2, 11, 18, 8, 11),
-        "replyContent": "Thank you very much for your review concerning our game. We will try our best to do better,If you have any other feedback or suggestions, feel free to contact us at penguinisle@habby.com. Have a nice day!",
-        "repliedAt": datetime.datetime(2020, 2, 11, 18, 53, 38),
-        "reviewId": "gp:AOqpTOEGUPB6HA0DIPNp3K2yAHRK-GN96dVJ-zkhPgKpclevgt8q9nR6Pv4N_F4TIPCpMeaoTutNGOZ2CSs65Ws"
-    },
+  {
+    "uid": "0000002bce726e45",
+    "name": "Lina Lee",
+    "icon": "//lh3.googleusercontent.com/a-/AFdZucpygN2Z6WHx3j7bU7mwmb7ddXHXitKFDGCfGM4z=s40-c-k",
+    "score": 5,
+    "comment": "Great tool! would save your time in ASO.",
+    "created_at": 1660629780540,
+    "reply": []
+  },
+  {
+    "uid": "0000004f4cd876fb",
+    "name": "Vincent Lee",
+    "icon": "//lh3.googleusercontent.com/a-/AFdZucrQC6sQQ8xixNcMXZXyYr5GOqpPAqHZliNjxRdX=s40-c-k",
+    "score": 5,
+    "comment": "very useful， nice tool， i like it",
+    "created_at": 1660629373721,
+    "reply": []
+  },
+  {
+    "uid": "000000dada9abfaa",
+    "name": "gogo sun",
+    "icon": "//lh3.googleusercontent.com/a/default-user=s40-c-k",
+    "score": 5,
+    "comment": "It's very useful",
+    "created_at": 1660629219523,
+    "reply": []
+  },
+  ...
 ]
 ```
 
@@ -365,6 +365,28 @@ Result of `print(result)`:
     ]
 }
 ```
+### Chrome Suggest
+```python
+from chrome_scraper import suggest
+
+result = suggest('ASO')
+```
+Result of `print(result)`:
+```
+[
+  "aso",
+  "aso tools",
+  "asos",
+  "asos helper",
+  "asos helper tools",
+  "asodigger",
+  "asociados",
+  "asocial",
+  "& asociados",
+  "asos price"
+]
+```
+
 ### App Search
 ```python
 from google_play_scraper import search

@@ -1,6 +1,40 @@
 import json
 import requests
 import ramda
+from typing import Callable, List, Any, Optional
+
+
+class MappingsSpec:
+    def __init__(
+            self,
+            mapping: List[int],
+            function: Callable = None,
+            default_value: Any = None,
+    ):
+        self.map = mapping
+        self.function = function
+        self.default_value = default_value
+
+    def extract_content(self, source_data):
+        try:
+            result = ramda.path(self.map, source_data)
+            if self.function is not None:
+                result = self.function(result)
+        except:
+            result = self.default_value
+        return result
+
+
+class Mappings:
+    Detail = {
+        "uid": MappingsSpec([2, 0]),
+        "name": MappingsSpec([2, 1]),
+        "icon": MappingsSpec([2, 2]),
+        "score": MappingsSpec([3]),
+        "comment": MappingsSpec([4]),
+        "created_at": MappingsSpec([6]),
+        "reply": MappingsSpec([9, 4]),
+    }
 
 
 def reviews(chrome_id, lang='en', country='us'):
@@ -10,14 +44,15 @@ def reviews(chrome_id, lang='en', country='us'):
 
 def get_review_detail(data):
     reviews_data = ramda.path([0, 1, 4], data)
-    reviews_count = ramda.path([0, 1, 6], data)
+    # reviews_count = ramda.path([0, 1, 6], data)
     reviews_result = []
-    for item in reviews_data:
-        reviews_result.append(get_review_mappings(item))
-    return {
-        'count': reviews_count,
-        'data': reviews_result
-    }
+    detail_mappings = Mappings.Detail.items()
+    for review in reviews_data:
+        result = {}
+        for key, item in detail_mappings:
+            result[key] = item.extract_content(review)
+        reviews_result.append(result)
+    return reviews_result
 
 
 def get_reviews(chrome_id, lang, country):
