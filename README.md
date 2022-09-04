@@ -1,5 +1,4 @@
 # Chrome-Scraper
-
 Chrome-Scraper provides APIs to easily crawl the Chrome Extension or Theme for Python *without any external dependencies!*
 
 ## Installation
@@ -20,9 +19,7 @@ result = chrome(
     country='us' # defaults to 'us'
 )
 ```
-
 Result of `print(result)`:
-
 ```
 {
     "chrome_id": "doffdbedgdhbmffejikhlojkopaleian", 
@@ -214,7 +211,6 @@ result = chrome(
 )
 ```
 Result of `print(result)`:
-
 ```
 {
     "chrome_id": "doffdbedgdhbmffejikhlojkopaleian", 
@@ -259,36 +255,12 @@ Result of `print(result)`:
 ```
 
 ### Chrome Reviews
-`reviews` function returns `result` with `continuation token`.
-
-- `result` : Crawling result of reviews. (list)
-- `continuation_token` : Data containing how many items were loaded, what arguments used in the current result. If you pass this value to the `continuation_token` parameter of the `reviews` function, the next items are crawled. For example, if 1000 reviews are retrieved and the returned token 'eXamplE' is passed to the reviews function, the list of reviews is retrieved from 1000 or later items.
-
-> :bulb: Setting `count` too high can cause problems. Because the maximum number of reviews per page supported by Google Play is 200, it is designed to pagination and recrawl by 200 until the number of results reaches count.
-
 ```python
-from chrome_scraper import Sort, reviews
+from chrome_scraper import reviews
 
-result, continuation_token = reviews(
-    'com.fantome.penguinisle',
-    lang='en', # defaults to 'en'
-    country='us', # defaults to 'us'
-    sort=Sort.NEWEST, # defaults to Sort.NEWEST
-    count=3, # defaults to 100
-    filter_score_with=5 # defaults to None(means all score)
-)
-
-# If you pass `continuation_token` as an argument to the reviews function at this point,
-# it will crawl the items after 3 review items.
-
-result, _ = reviews(
-    'com.fantome.penguinisle',
-    continuation_token=continuation_token # defaults to None(load from the beginning)
-)
+result = reviews('doffdbedgdhbmffejikhlojkopaleian')
 ```
-
 Result of `print(result)`:
-
 ```
 [
   {
@@ -350,9 +322,7 @@ from google_play_scraper import search
 
 result = search("SEO")
 ```
-
 Result of `print(result)`:
-
 ```
 [
   {
