@@ -1,5 +1,5 @@
 import re
-from enum import Enum, unique
+from enum import Enum
 
 
 class Types(Enum):
@@ -10,17 +10,17 @@ class Types(Enum):
 # 分类
 # https://chrome.google.com/webstore/category/{Category}?gl=us&hl=en
 class Category(Enum):
-    accessibility = 'ext/22-accessibility'
-    blogging = 'ext/10-blogging'
-    web_development = 'ext/11-web-development'
-    fun = 'ext/14-fun'
-    news = 'ext/6-news'
-    photos = 'ext/28-photos'
-    productivity = 'ext/7-productivity'
-    search_tools = 'ext/38-search-tools'
-    shopping = 'ext/12-shopping'
-    communication = 'ext/1-communication'
-    sports = 'ext/13-sports'
+    accessibility = "ext/22-accessibility"
+    blogging = "ext/10-blogging"
+    web_development = "ext/11-web-development"
+    fun = "ext/14-fun"
+    news = "ext/6-news"
+    photos = "ext/28-photos"
+    productivity = "ext/7-productivity"
+    search_tools = "ext/38-search-tools"
+    shopping = "ext/12-shopping"
+    communication = "ext/1-communication"
+    sports = "ext/13-sports"
 
 
 # 榜单
@@ -40,10 +40,114 @@ class Collection(Enum):
 
 
 class Country(Enum):
-    us = 'us'
-    cn = 'cn'
+    ar = "AR"
+    ae = "AE"
+    eg = "EG"
+    ie = "IE"
+    ee = "EE"
+    at = "AT"
+    au = "AU"
+    pa = "PA"
+    bg = "BG"
+    be = "BE"
+    pl = "PL"
+    dk = "DK"
+    de = "DE"
+    ru = "RU"
+    ec = "EC"
+    fr = "FR"
+    ph = "PH"
+    fi = "FI"
+    co = "CO"
+    cu = "CU"
+    nl = "NL"
+    ca = "CA"
+    cz = "CZ"
+    lt = "LT"
+    ro = "RO"
+    my = "MY"
+    us = "US"
+    pe = "PE"
+    ma = "MA"
+    mx = "MX"
+    za = "ZA"
+    no = "NO"
+    pt = "PT"
+    jp = "JP"
+    se = "SE"
+    ch = "CH"
+    sa = "SA"
+    sk = "SK"
+    tw = "TW"
+    th = "TH"
+    tr = "TR"
+    ve = "VE"
+    ua = "UA"
+    es = "ES"
+    gr = "GR"
+    hk = "HK"
+    sg = "SG"
+    nz = "NZ"
+    hu = "HU"
+    il = "IL"
+    it = "IT"
+    IN = "IN"
+    id = "ID"
+    gb = "GB"
+    vn = "VN"
+    cl = "CL"
+    cn = "CN"
 
 
 class Language(Enum):
-    us = 'en'
-    cn = 'zh-CN'
+    ar = "ar"
+    et = "et"
+    bg = "bg"
+    pl = "pl"
+    fa = "fa"
+    da = "da"
+    de = "de"
+    ru = "ru"
+    fr = "fr"
+    fil = "fil"
+    fi = "fi"
+    gu = "gu"
+    ko = "ko"
+    nl = "nl"
+    ca = "ca"
+    cs = "cs"
+    hr = "hr"
+    lv = "lv"
+    lt = "lt"
+    ro = "ro"
+    mr = "mr"
+    ml = "ml"
+    ms = "ms"
+    bn = "bn"
+    no = "no"
+    br = "pt_BR"
+    pt = "pt_PT"
+    jp = "ja"
+    sv = "sv"
+    sr = "sr"
+    sk = "sk"
+    sl = "sl"
+    te = "te"
+    ta = "ta"
+    th = "th"
+    tr = "tr"
+    uk = "uk"
+    es = "es"
+    # es= "es_419"
+    iw = "iw"
+    el = "el"
+    hu = "hu"
+    it = "it"
+    hi = "hi"
+    IN = "in"
+    en = "en"
+    us = "en_US"
+    gb = "en_GB"
+    vi = "vi"
+    tw = "zh_TW"
+    cn = "zh_CN"
