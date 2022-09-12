@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "chrome-scraper"
+version = "1.2.1"
+description = "Chrome-Scraper provides APIs to easily crawl the Chrome Extension or Theme for Python without any external dependencies!"
+authors = ["caohongyuan <icahongyuan@gmail.com>"]
+license = "MIT"
+packages = [
+    { include = "chrome-scraper" }
+]
+classifiers = [
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Typing :: Typed",
+]
+readme = "README.md"
+repository = "https://github.com/waller-rr/chrome-scraper"
+
+[tool.poetry.dependencies]
+python = ">= 3.7,< 4.0"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

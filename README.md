@@ -1,7 +1,7 @@
 # Chrome-Scraper
 Chrome-Scraper provides APIs to easily crawl the Chrome Extension or Theme for Python *without any external dependencies!*
 
-## Installation
+## Installation(loading...)
 ```
 pip install chrome-scraper
 ```
